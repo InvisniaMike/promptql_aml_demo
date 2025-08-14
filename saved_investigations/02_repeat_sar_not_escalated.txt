@@ -1,0 +1,22 @@
+Saved Investigation: Repeat-SAR Subjects Not Escalated
+// COMMENT: Governance proof—EDD + tier change after repeat SARs.
+
+Parameters:
+- lookback = 12 months
+- window_months = 6
+- min_sars = 2
+- require_edd = true
+- require_risk_tier_change = true
+
+Prompt (parameterized):
+Detect repeat-SAR governance gaps over {{lookback}}.
+Criteria:
+- sar_count in {{window_months}} months >= {{min_sars}}
+- Missing EDD = {{require_edd}}, missing risk-tier change = {{require_risk_tier_change}}
+
+Output:
+- customer_id, sar_count_{{window_months}}m, last_sar_at, has_edd, risk_tier_before, risk_tier_after, reason_codes
+Visualization:
+- priority matrix (risk_today, risk_trajectory)
+Audit:
+- lineage ON

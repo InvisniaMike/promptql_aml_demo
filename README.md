@@ -1,5 +1,4 @@
 # PromptQL AML Demo — Quickstart
-// COMMENT: Clean, repo-ready README (no lambda section). Aligns with PromptQL docs & our demo story.
 
 This repo lets you demo **three Saved Investigations** with a thin, offline-capable viz:
 1) **Sanctions/PEP SLA Leakage**
@@ -37,7 +36,7 @@ promptql_aml_demo/
 
 ---
 
-## 1) What you’ll show (above the line)
+## 1) What we can show (above the line)
 - **Live run** of **Sanctions/PEP SLA Leakage** with **lineage** (reason codes + SLA hours to case).
 - **Prompt ladder**: naïve → assisted chips (lookback/SLA/match/exclusions) → **Saved Investigation**.
 - **One visual**: weekly anomaly line **or** **Risk Today × Risk Trajectory** matrix.
@@ -105,7 +104,7 @@ export PROMPTQL_TZ=America/Detroit
 ## 6) ELI5 Glossary
 - **Lineage**: the receipt per result (tables, filters, joins, timestamp, config hash).
 - **Fuzzy 0.90**: “close” name+DOB match; tighten or relax once.
-- **SLA 24h**: time limit to open a case after a risky transfer.
+- **SLA 24h**: time limit to open a case after a risky transfer/event.
 - **Anomaly (MAD)**: flags points ~3× Median Absolute Deviation.
 - **Priority matrix**: X=Risk Today, Y=Risk Trajectory. Top-right = Fix Now.
 

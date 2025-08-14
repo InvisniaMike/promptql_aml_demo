@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>PromptQL AML Demo — Thin Viz</title>
+    <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+    <header>
+        <h1>PromptQL AML Demo</h1>
+        <div class="controls">
+            <label>Data Source:
+                <select id="sourceSelect">
+                    <option value="../snapshots">snapshots (offline)</option>
+                    <option value="./data">viz/data (live export)</option>
+                </select>
+            </label>
+            <button id="reloadBtn">Reload</button>
+        </div>
+    </header>
+
+    <section id="kpis" class="kpi-grid"></section>
+
+    <section class="panel">
+        <h2>Sanctions/PEP Leakage — Weekly (anomalies flagged)</h2>
+        <div id="timeseries" class="chart-area">
+            <svg id="tsSvg" viewBox="0 0 800 220"></svg>
+            <div class="empty-note" id="tsEmpty">No data yet — export leakage timeseries JSON.</div>
+        </div>
+    </section>
+
+    <section class="panel">
+        <h2>Priority Matrix — Risk Today × Risk Trajectory</h2>
+        <div id="matrix" class="matrix">
+            <div class="axes">
+                <span class="axis-label x">Risk Today →</span>
+                <span class="axis-label y">Risk Trajectory ↑</span>
+            </div>
+            <div id="matrixDots" class="dots"></div>
+            <div class="quadrants">
+                <div class="q q1">Fix Now</div>
+                <div class="q q2">Instrument</div>
+                <div class="q q3">Monitor</div>
+                <div class="q q4">Later</div>
+            </div>
+            <div class="empty-note" id="matrixEmpty">No entities scored yet — export any Saved Investigation JSON.</div>
+        </div>
+    </section>
+
+    <section class="panel">
+        <h2>Entity Details (click a dot)</h2>
+        <div id="details" class="details">
+            <table>
+                <tbody id="detailsBody">
+                    <tr>
+                        <td colspan="2" class="muted">Click a matrix dot to view details, reason codes, and SLA info.
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <section class="panel">
+        <h2>Data Quality Snapshot</h2>
+        <div id="dq" class="dq">
+            <div class="dq-grid">
+                <div class="dq-card">
+                    <div class="dq-label">Nulls in join keys</div>
+                    <div class="dq-value" id="dqNulls">—</div>
+                </div>
+                <div class="dq-card">
+                    <div class="dq-label">Duplicate IDs</div>
+                    <div class="dq-value" id="dqDupes">—</div>
+                </div>
+                <div class="dq-card">
+                    <div class="dq-label">Timestamp gaps</div>
+                    <div class="dq-value" id="dqGaps">—</div>
+                </div>
+            </div>
+            <small class="muted">Provide optional <code>meta.data_quality</code> in your JSON to populate these.</small>
+        </div>
+    </section>
+
+    <section class="panel">
+        <h2>Lineage (for selected item)</h2>
+        <pre id="lineageBox" class="lineage"></pre>
+    </section>
+
+    <footer><small>All visuals are driven from PromptQL JSON outputs. Offline-capable.</small></footer>
+    <script src="app.js"></script>
+</body>
+
+</html>

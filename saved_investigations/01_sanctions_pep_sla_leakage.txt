@@ -1,0 +1,25 @@
+Saved Investigation: Sanctions/PEP SLA Leakage
+// COMMENT: Start strict for precision; relax once for recall.
+
+Parameters:
+- lookback = 12 months
+- sla_hours = 24
+- match_mode = "exact"        # relax once to "fuzzy" if few results
+- match_threshold = 0.90      # only if fuzzy
+- min_total_amount = 10000
+- exclude_accounts = ["TEST%", "TRAINING%", "INTERNAL%"]
+
+Prompt (parameterized):
+Detect sanctions/PEP SLA leakage over {{lookback}}.
+Criteria:
+- Party match: sanctions ({{match_mode}} {{match_threshold}} on name+dob if fuzzy) OR customers.is_pep=true
+- SLA breach: no AML_Case within {{sla_hours}} hours
+- Thresholds: total_amount >= {{min_total_amount}}
+- Exclusions: {{exclude_accounts}}
+
+Output:
+- entity_id, entity_name, tx_count, total_amount, first_seen, last_seen, sla_hours_to_case, match_confidence, reason_codes
+Visualization:
+- timeseries (weekly, MAD anomalies) + priority matrix (risk_today, risk_trajectory)
+Audit:
+- Include lineage: tables, filters, joins, executed_at, query_hash, config_version

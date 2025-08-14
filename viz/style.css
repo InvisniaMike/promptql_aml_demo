@@ -1,0 +1,213 @@
+* {
+    box-sizing: border-box
+}
+
+body {
+    font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    margin: 0;
+    background: #f8f9fb;
+    color: #111
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 20px;
+    background: #fff;
+    border-bottom: 1px solid #e5e7eb;
+    position: sticky;
+    top: 0;
+    z-index: 1
+}
+
+h1 {
+    font-size: 20px;
+    margin: 0
+}
+
+.controls select,
+.controls button {
+    padding: 8px 10px;
+    margin-left: 8px
+}
+
+.panel {
+    background: #fff;
+    margin: 16px;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    padding: 12px 12px 16px
+}
+
+.kpi-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    margin: 16px
+}
+
+.kpi {
+    background: #fff;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    padding: 12px
+}
+
+.kpi .label {
+    font-size: 12px;
+    color: #666
+}
+
+.kpi .value {
+    font-size: 22px;
+    font-weight: 700;
+    margin-top: 6px
+}
+
+.chart-area {
+    position: relative;
+    height: 240px;
+    border: 1px dashed #d1d5db;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center
+}
+
+.empty-note {
+    color: #888;
+    font-size: 12px;
+    position: absolute
+}
+
+.matrix {
+    position: relative;
+    height: 360px;
+    border: 1px dashed #d1d5db;
+    border-radius: 8px;
+    background: #fff;
+    margin: 8px
+}
+
+.axes .axis-label {
+    position: absolute;
+    font-size: 12px;
+    color: #666
+}
+
+.axes .x {
+    bottom: 6px;
+    right: 8px
+}
+
+.axes .y {
+    top: 8px;
+    left: 8px
+}
+
+.quadrants {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr
+}
+
+.q {
+    border: 1px solid #f0f0f0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    color: #888
+}
+
+.dots {
+    position: absolute;
+    inset: 0
+}
+
+.dot {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #222;
+    cursor: pointer
+}
+
+.dot:hover {
+    transform: scale(1.6)
+}
+
+.lineage {
+    background: #0b1020;
+    color: #cce;
+    min-height: 120px;
+    margin: 0;
+    padding: 12px;
+    border-radius: 8px;
+    overflow: auto
+}
+
+.details table {
+    width: 100%;
+    border-collapse: collapse
+}
+
+.details td {
+    border-bottom: 1px solid #eef;
+    padding: 8px 6px;
+    vertical-align: top
+}
+
+.details td.key {
+    width: 220px;
+    color: #445;
+    font-weight: 600
+}
+
+.muted {
+    color: #748;
+    opacity: 0.8
+}
+
+.dq-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-top: 8px
+}
+
+.dq-card {
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    padding: 10px;
+    background: #fff
+}
+
+.dq-label {
+    font-size: 12px;
+    color: #666
+}
+
+.dq-value {
+    font-size: 18px;
+    font-weight: 700;
+    margin-top: 6px
+}
+
+@media(max-width:960px) {
+    .kpi-grid {
+        grid-template-columns: repeat(2, 1fr)
+    }
+
+    .dq-grid {
+        grid-template-columns: 1fr
+    }
+
+    .details td.key {
+        width: 140px
+    }
+}

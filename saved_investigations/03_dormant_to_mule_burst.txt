@@ -1,0 +1,27 @@
+
+Saved Investigation: Dormant → Mule Burst
+// COMMENT: Mule fan-out pattern—dormant history + sudden many-new-counterparties burst.
+
+Parameters:
+- lookback = 12 months
+- dormant_days = 180
+- recent_window_days = 14
+- min_new_counterparties = 10
+- min_tx_count_recent = 8
+- min_sum_amount_recent = 5000
+
+Prompt (parameterized):
+Detect dormant→mule burst patterns over {{lookback}}.
+Criteria:
+- dormant_days > {{dormant_days}}
+- new_counterparties in {{recent_window_days}} days >= {{min_new_counterparties}}
+- tx_count_recent >= {{min_tx_count_recent}}
+- sum_amount_recent >= {{min_sum_amount_recent}}
+
+Output:
+- account_id, dormant_days, new_counterparties_{{recent_window_days}}d, tx_count_{{recent_window_days}}d, sum_amount_{{recent_window_days}}d,
+  first_seen, last_seen, reason_codes
+Visualization:
+- priority matrix + optional timeseries
+Audit:
+- lineage ON
